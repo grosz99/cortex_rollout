@@ -65,6 +65,39 @@ REACT_APP_SEMANTIC_MODEL_PATH=@your_database.your_schema.your_stage/customer_sem
 
 3. Open your browser and navigate to http://localhost:3000
 
+## Deploying to Vercel
+
+This project is configured for deployment on Vercel. Follow these steps to deploy:
+
+1. **Install Vercel CLI** (optional, but helpful for testing):
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Set up environment variables in Vercel**:
+   - Go to your Vercel dashboard
+   - Select your project
+   - Go to Settings > Environment Variables
+   - Add all the environment variables from your `.env` file
+   - Make sure to add the following variables:
+     - `REACT_APP_SNOWFLAKE_ACCOUNT`
+     - `REACT_APP_SNOWFLAKE_USERNAME`
+     - `REACT_APP_SNOWFLAKE_PASSWORD`
+     - `REACT_APP_SNOWFLAKE_WAREHOUSE`
+     - `REACT_APP_SNOWFLAKE_DATABASE`
+     - `REACT_APP_SNOWFLAKE_SCHEMA`
+
+3. **Deploy to Vercel**:
+   - Using Vercel CLI:
+     ```bash
+     vercel
+     ```
+   - Or connect your GitHub repository to Vercel for automatic deployments
+
+4. **Verify deployment**:
+   - Test the chat interface on your deployed Vercel URL
+   - Check that API requests are working correctly by default.
+
 ## Available Scripts
 
 In the project directory, you can run:
