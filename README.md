@@ -1,6 +1,69 @@
-# Getting Started with Create React App
+# Snowflake Cortex Agent Chat Interface
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project provides a chat interface for interacting with Snowflake's Cortex Agent. It allows users to query their Snowflake data using natural language and receive AI-generated responses based on the data.
+
+## Features
+
+- Natural language queries to Snowflake data
+- Real-time responses from Snowflake Cortex Agent
+- Interactive chat interface
+- Support for various data queries including sales, revenue, and contract information
+
+This project consists of a React frontend and an Express backend that connects to Snowflake.
+
+## Setup
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+- Snowflake account with Cortex Agent enabled
+
+### Environment Variables
+
+Before running the application, you need to set up your environment variables:
+
+1. Copy the `.env.example` file to a new file named `.env`
+2. Fill in your Snowflake credentials and configuration in the `.env` file
+
+```
+REACT_APP_SNOWFLAKE_ACCOUNT=your_account_identifier
+REACT_APP_SNOWFLAKE_USERNAME=your_username
+REACT_APP_SNOWFLAKE_PASSWORD=your_password
+REACT_APP_SNOWFLAKE_WAREHOUSE=your_warehouse
+REACT_APP_SNOWFLAKE_DATABASE=your_database
+REACT_APP_SNOWFLAKE_SCHEMA=your_schema
+REACT_APP_SNOWFLAKE_ROLE=your_role
+REACT_APP_SNOWFLAKE_URL=https://your_account.snowflakecomputing.com
+
+# Cortex Agent API settings
+REACT_APP_CORTEX_MODEL=claude-4-sonnet
+REACT_APP_SEMANTIC_MODEL_PATH=@your_database.your_schema.your_stage/customer_semantic_model.yaml
+```
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+
+1. Start the Express backend server:
+   ```bash
+   node server.js
+   ```
+   The server will run on port 3002 by default.
+
+2. In a separate terminal, start the React frontend:
+   ```bash
+   npm start
+   ```
+   The frontend will run on port 3000 by default.
+
+3. Open your browser and navigate to http://localhost:3000
 
 ## Available Scripts
 
