@@ -7,14 +7,18 @@
       "config": { "distDir": "build" }
     },
     {
-      "src": "api/index.js",
+      "src": "api/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
+      "src": "/api/cortex-agent",
+      "dest": "/api/cortex-agent.js"
+    },
+    {
       "src": "/api/(.*)",
-      "dest": "/api/index.js"
+      "dest": "/api/$1.js"
     },
     {
       "handle": "filesystem"
