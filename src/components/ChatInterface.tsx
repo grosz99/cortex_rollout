@@ -17,7 +17,7 @@ import {
   TableRow
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { cortexAgentService, Message, CortexResponse } from '../services/cortexAgentService';
+import { cortexAgentService, Message } from '../services/cortexAgentService';
 
 const ChatInterface: React.FC = () => {
   const [input, setInput] = useState('');
