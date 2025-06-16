@@ -63,9 +63,13 @@ const ChatInterface: React.FC = () => {
         
         // Store the data and columns if they exist
         if (response.data && response.columns) {
+          // Ensure data and columns are not undefined with non-null assertion
+          const data = response.data!;
+          const columns = response.columns!;
+          
           setResponseData(prev => [...prev, {
-            data: response.data,
-            columns: response.columns,
+            data,
+            columns,
             messageIndex: newMessages.length - 1
           }]);
         }
