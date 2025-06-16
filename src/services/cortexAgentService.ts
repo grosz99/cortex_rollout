@@ -37,7 +37,7 @@ class CortexAgentService {
       console.log('Sending query to backend:', query);
       
       // Call our backend API that interfaces with Snowflake
-      const response = await axiosInstance.post('/api/cortex-agent', {
+      const response = await axiosInstance.post('/cortex-agent', {
         query,
         history
       });
