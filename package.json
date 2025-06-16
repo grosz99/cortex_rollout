@@ -32,6 +32,9 @@
     "vercel-build": "react-scripts build",
     "dev": "react-scripts start"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
