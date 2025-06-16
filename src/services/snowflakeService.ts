@@ -64,17 +64,7 @@ class SnowflakeService {
     }
   }
 
-  // Method to test connection to Snowflake
-  async testConnection(): Promise<boolean> {
-    try {
-      const testQuery = 'SELECT 1';
-      const result = await this.executeQuery(testQuery);
-      return result.status === 'success';
-    } catch (error) {
-      console.error('Connection test failed:', error);
-      return false;
-    }
-  }
+  // Method to test connection to Snowflake - removed as unused
 }
 
 export const snowflakeService = new SnowflakeService();

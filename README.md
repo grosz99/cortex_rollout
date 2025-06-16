@@ -9,7 +9,7 @@ This project provides a chat interface for interacting with Snowflake's Cortex A
 - Interactive chat interface
 - Support for various data queries including sales, revenue, and contract information
 
-This project consists of a React frontend and an Express backend that connects to Snowflake.
+This project consists of a React frontend with serverless API routes that connect to Snowflake. The application is deployed on Vercel.
 
 ## Setup
 
@@ -51,28 +51,22 @@ REACT_APP_SEMANTIC_MODEL_PATH=@your_database.your_schema.your_stage/customer_sem
 
 ### Running the Application
 
-1. Start the Express backend server:
+1. Start the development server:
    ```bash
-   node server.js
+   npm run dev
    ```
-   The server will run on port 3002 by default.
+   This will start the React frontend with API routes on port 3000 by default.
 
-2. In a separate terminal, start the React frontend:
-   ```bash
-   npm start
-   ```
-   The frontend will run on port 3000 by default.
-
-3. Open your browser and navigate to http://localhost:3000
+2. Open your browser and navigate to http://localhost:3000
 
 ## Deploying to Vercel
 
-This project is configured for deployment on Vercel. Follow these steps to deploy:
+This project is configured for deployment on Vercel with a simplified setup. Follow these steps to deploy:
 
-1. **Install Vercel CLI** (optional, but helpful for testing):
-   ```bash
-   npm install -g vercel
-   ```
+1. **Connect your GitHub repository to Vercel**:
+   - Create a new project on Vercel
+   - Connect your GitHub repository
+   - Vercel will automatically detect the React application
 
 2. **Set up environment variables in Vercel**:
    - Go to your Vercel dashboard
@@ -87,16 +81,10 @@ This project is configured for deployment on Vercel. Follow these steps to deplo
      - `REACT_APP_SNOWFLAKE_DATABASE`
      - `REACT_APP_SNOWFLAKE_SCHEMA`
 
-3. **Deploy to Vercel**:
-   - Using Vercel CLI:
-     ```bash
-     vercel
-     ```
-   - Or connect your GitHub repository to Vercel for automatic deployments
-
-4. **Verify deployment**:
+3. **Verify deployment**:
    - Test the chat interface on your deployed Vercel URL
-   - Check that API requests are working correctly by default.
+   - Check that API requests are working correctly
+   - Verify that data tables are displayed correctly in the chat interface
 
 ## Available Scripts
 

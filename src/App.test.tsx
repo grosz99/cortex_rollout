@@ -2,8 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders app title', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const titleElement = screen.getByText(/Snowflake Cortex Agent/i);
+  expect(titleElement).toBeInTheDocument();
+});
+
+test('renders subtitle', () => {
+  render(<App />);
+  const subtitleElement = screen.getByText(/Ask questions about your sales data/i);
+  expect(subtitleElement).toBeInTheDocument();
 });
