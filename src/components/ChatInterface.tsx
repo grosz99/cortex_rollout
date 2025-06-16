@@ -8,10 +8,16 @@ import {
   CircularProgress,
   Container,
   Grid,
-  Divider
+  Divider,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow
 } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import { cortexAgentService, Message } from '../services/cortexAgentService';
+import { cortexAgentService, Message, CortexResponse } from '../services/cortexAgentService';
 
 const ChatInterface: React.FC = () => {
   const [input, setInput] = useState('');
@@ -21,6 +27,7 @@ const ChatInterface: React.FC = () => {
       content: 'Hello! I can help you analyze your sales data and contract documents. What would you like to know?' 
     }
   ]);
+  const [responseData, setResponseData] = useState<{data: any[], columns: any[], messageIndex: number}[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -51,7 +58,17 @@ const ChatInterface: React.FC = () => {
       const response = await cortexAgentService.sendQuery(input, messages);
       
       if (response.status === 'success' && response.message) {
-        setMessages(prev => [...prev, response.message as Message]);
+        const newMessages = [...messages, response.message as Message];
+        setMessages(newMessages);
+        
+        // Store the data and columns if they exist
+        if (response.data && response.columns) {
+          setResponseData(prev => [...prev, {
+            data: response.data,
+            columns: response.columns,
+            messageIndex: newMessages.length - 1
+          }]);
+        }
       } else {
         // Handle error
         setMessages(prev => [...prev, { 
@@ -104,6 +121,39 @@ const ChatInterface: React.FC = () => {
                 }}
               >
                 <Typography variant="body1">{msg.content}</Typography>
+                
+                {/* Render data table if this message has associated data */}
+                {responseData.find(rd => rd.messageIndex === index) && (
+                  <Box sx={{ mt: 2, overflow: 'auto' }}>
+                    <TableContainer component={Paper} sx={{ maxHeight: 300 }}>
+                      <Table size="small" stickyHeader>
+                        <TableHead>
+                          <TableRow>
+                            {responseData.find(rd => rd.messageIndex === index)?.columns.map((column, colIndex) => (
+                              <TableCell key={colIndex} sx={{ fontWeight: 'bold' }}>
+                                {typeof column === 'string' ? column : column.name}
+                              </TableCell>
+                            ))}
+                          </TableRow>
+                        </TableHead>
+                        <TableBody>
+                          {responseData.find(rd => rd.messageIndex === index)?.data.map((row, rowIndex) => (
+                            <TableRow key={rowIndex}>
+                              {responseData.find(rd => rd.messageIndex === index)?.columns.map((column, colIndex) => {
+                                const columnName = typeof column === 'string' ? column : column.name;
+                                return (
+                                  <TableCell key={colIndex}>
+                                    {row[columnName] !== undefined ? String(row[columnName]) : ''}
+                                  </TableCell>
+                                );
+                              })}
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </TableContainer>
+                  </Box>
+                )}
               </Paper>
             </Box>
           ))}
